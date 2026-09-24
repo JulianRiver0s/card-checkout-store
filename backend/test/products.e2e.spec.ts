@@ -90,6 +90,40 @@ describe('Products API (e2e)', () => {
     });
   });
 
+  describe('GET /products/:id', () => {
+    it('returns the product with the fixed purchase fees', async () => {
+      app = await startApp(new InMemoryProductRepository(PRODUCTS));
+
+      const res = await request(app.getHttpServer()).get(`/products/${IN_STOCK.id}`).expect(200);
+
+      expect(res.body).toMatchObject({
+        id: IN_STOCK.id,
+        availableUnits: 12,
+        fees: { baseFeeInCents: 300000, deliveryFeeInCents: 1000000 },
+      });
+    });
+
+    it('answers 404 for a well-formed id that does not exist', async () => {
+      app = await startApp(new InMemoryProductRepository(PRODUCTS));
+
+      await request(app.getHttpServer())
+        .get('/products/00000000-0000-4000-8000-000000000000')
+        .expect(404);
+    });
+
+    it.each(['abc', '3f6c2a1e-8b4d-1f7a-9c2e-1a5b7d9e0f11'])(
+      'answers 400 for a malformed id (%s) without querying storage',
+      async (id) => {
+        const repository = new InMemoryProductRepository(PRODUCTS);
+        const findById = jest.spyOn(repository, 'findById');
+        app = await startApp(repository);
+
+        await request(app.getHttpServer()).get(`/products/${id}`).expect(400);
+        expect(findById).not.toHaveBeenCalled();
+      },
+    );
+  });
+
   describe('GET /docs', () => {
     it('serves the public API documentation', async () => {
       app = await startApp(new InMemoryProductRepository());
