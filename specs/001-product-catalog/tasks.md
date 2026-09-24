@@ -112,10 +112,11 @@ DEBEN fallar (red) antes de la implementación (green).
 
 ## Phase 6: Polish & transversal
 
-- [ ] T028 Test del handler `backend/src/lambda.spec.ts`: evento HTTP API v2 `GET /products` con DynamoDB mockeado → 200. Implementar `backend/src/lambda.ts` (instancia cacheada entre invocaciones)
-- [ ] T029 [P] Implementar `backend/src/main.ts` (bootstrap local con `createApp`)
-- [ ] T030 Correr `npm test -- --coverage`, verificar ≥ 80 % (meta 90) y registrar el resultado en el PR
-- [ ] T031 [P] Actualizar la sección Backend del `README.md` (cómo correr tests y endpoints del catálogo)
+- [X] T028 Test del handler `backend/src/lambda.spec.ts`: evento HTTP API v2 `GET /products` con DynamoDB mockeado → 200. Implementar `backend/src/lambda.ts` (instancia cacheada entre invocaciones)
+- [X] T029 [P] Implementar `backend/src/main.ts` (bootstrap local con `createApp`)
+- [X] T030 Correr `npm test -- --coverage`, verificar ≥ 80 % (meta 90) y registrar el resultado en el PR
+- [X] T031 [P] Actualizar la sección Backend del `README.md` (cómo correr tests y endpoints del catálogo)
+- [X] T032 [P] Añadir `.github/workflows/ci.yml`: guard de marca + build y `test:cov` del backend en cada PR (adelantado desde 004 para que el PR tenga check)
 
 ---
 
