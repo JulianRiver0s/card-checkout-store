@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: Checkout Store API — Catalog
+  version: 1.0.0
+  description: Contrato de diseño de la feature 001. La versión viva se sirve en `/docs`.
+paths:
+  /products:
+    get:
+      summary: List all products with available stock
+      responses:
+        '200':
+          description: Catalog (empty array when there are no products)
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Product' }
+        '500': { $ref: '#/components/responses/InternalError' }
+  /products/{id}:
+    get:
+      summary: Get one product with the purchase fees
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Product detail
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ProductDetail' }
+        '400': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '500': { $ref: '#/components/responses/InternalError' }
+components:
+  schemas:
+    Product:
+      type: object
+      required: [id, name, description, imageUrl, priceInCents, availableUnits]
+      properties:
+        id: { type: string, format: uuid, example: 0b6f3c1e-7a51-4c1b-9d0e-3f1a2b4c5d61 }
+        name: { type: string, example: Wireless headphones }
+        description: { type: string }
+        imageUrl: { type: string, example: /images/products/headphones.webp }
+        priceInCents: { type: integer, minimum: 1, example: 18990000 }
+        availableUnits: { type: integer, minimum: 0, example: 12 }
+    ProductDetail:
+      allOf:
+        - $ref: '#/components/schemas/Product'
+        - type: object
+          required: [fees]
+          properties:
+            fees:
+              type: object
+              required: [baseFeeInCents, deliveryFeeInCents]
+              properties:
+                baseFeeInCents: { type: integer, minimum: 0, example: 300000 }
+                deliveryFeeInCents: { type: integer, minimum: 0, example: 1000000 }
+    Error:
+      type: object
+      required: [statusCode, message]
+      properties:
+        statusCode: { type: integer }
+        message: { type: string }
+        error: { type: string }
+  responses:
+    Error:
+      description: Client error
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    InternalError:
+      description: Generic error; no infrastructure details are exposed
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
