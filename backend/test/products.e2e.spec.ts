@@ -124,6 +124,14 @@ describe('Products API (e2e)', () => {
     );
   });
 
+  describe('POST /products', () => {
+    it('does not exist: products are only created by the seed', async () => {
+      app = await startApp(new InMemoryProductRepository());
+
+      await request(app.getHttpServer()).post('/products').send({ name: 'x' }).expect(404);
+    });
+  });
+
   describe('GET /docs', () => {
     it('serves the public API documentation', async () => {
       app = await startApp(new InMemoryProductRepository());
