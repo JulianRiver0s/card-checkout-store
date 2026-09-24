@@ -24,11 +24,11 @@ description: "Task list for 002-aws-deploy"
 
 ### Implementación
 
-- [ ] T003 [US1] Escribir `template.yaml`: `ProductsTable`, `ApiFunction` (nodejs24.x, arm64, 1024 MB, `DynamoDBReadPolicy`, env `PRODUCTS_TABLE`/`CORS_ORIGIN`), `ApiLogGroup` (14 días), `HttpApi` con throttling y outputs `ApiUrl`/`ProductsTableName`
-- [ ] T004 [US1] `sam validate --lint` sin errores
-- [ ] T005 [US1] `sam build` + `sam deploy --guided` (stack `card-checkout-store`, `us-east-1`)
-- [ ] T006 [US1] Sembrar la tabla desplegada con `npm run seed`
-- [ ] T007 [US1] Correr `scripts/smoke-api.sh $ApiUrl` → verde
+- [X] T003 [US1] Escribir `template.yaml`: `ProductsTable`, `ApiFunction` (nodejs24.x, arm64, 1024 MB, `DynamoDBReadPolicy`, env `PRODUCTS_TABLE`/`CORS_ORIGIN`), `ApiLogGroup` (14 días), `HttpApi` con throttling y outputs `ApiUrl`/`ProductsTableName`
+- [X] T004 [US1] `sam validate --lint` sin errores
+- [X] T005 [US1] `sam build` + `sam deploy --guided` (stack `card-checkout-store`, `us-east-1`)
+- [X] T006 [US1] Sembrar la tabla desplegada con `npm run seed`
+- [X] T007 [US1] Correr `scripts/smoke-api.sh $ApiUrl` → verde
 
 ## Phase 3: User Story 2 - Infraestructura reproducible (P1)
 
