@@ -14,13 +14,13 @@ description: "Task list for 002-aws-deploy"
 
 ## Phase 1: Setup
 
-- [ ] T001 Agregar `"files": ["dist"]` a `backend/package.json` y verificar con `npm pack --dry-run` que solo se empaquetan `dist/` y `package.json`
+- [X] T001 Agregar `"files": ["dist"]` a `backend/package.json` y verificar con `npm pack --dry-run` que solo se empaquetan `dist/` y `package.json`
 
 ## Phase 2: User Story 1 - Catálogo público por HTTPS (P1) 🎯 MVP
 
 ### Tests primero
 
-- [ ] T002 [US1] Escribir `scripts/smoke-api.sh` (US1-1..4 + SC-002) y verificar que falla sin API desplegada
+- [X] T002 [US1] Escribir `scripts/smoke-api.sh` (US1-1..4 + SC-002) y verificar que falla sin API desplegada
 
 ### Implementación
 
