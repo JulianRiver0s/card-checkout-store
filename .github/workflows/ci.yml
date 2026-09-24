@@ -35,3 +35,14 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run test:cov
+
+  infra:
+    runs-on: ubuntu-latest
+    env:
+      AWS_DEFAULT_REGION: us-east-1
+    steps:
+      - uses: actions/checkout@v7
+      - uses: aws-actions/setup-sam@v3
+        with:
+          use-installer: true
+      - run: sam validate --lint

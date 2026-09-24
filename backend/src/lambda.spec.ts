@@ -33,12 +33,16 @@ const httpApiEvent = (path: string): APIGatewayProxyEventV2 => ({
 });
 
 const invoke = async (path: string) =>
-  (await handler(httpApiEvent(path), {} as Context, () => undefined)) as APIGatewayProxyStructuredResultV2;
+  (await handler(httpApiEvent(path), {} as Context)) as APIGatewayProxyStructuredResultV2;
 
 describe('Lambda handler', () => {
   const create = jest.spyOn(NestFactory, 'create');
 
   beforeEach(() => dynamo.reset());
+
+  it('uses the async (event, context) signature: Node.js 24 runtimes reject callback handlers', () => {
+    expect(handler.length).toBeLessThan(3);
+  });
 
   it('serves GET /products from an API Gateway HTTP API event', async () => {
     dynamo.on(ScanCommand).resolves({ Items: PRODUCTS });
