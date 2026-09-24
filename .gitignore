@@ -1,0 +1,19 @@
+# challenge brief (never commit)
+*.pdf
+
+# secrets
+.env
+.env.*
+!.env.example
+
+# deps / build
+node_modules/
+dist/
+coverage/
+.aws-sam/
+samconfig.toml
+
+# os / editor
+.DS_Store
+Thumbs.db
+.claude/settings.local.json
