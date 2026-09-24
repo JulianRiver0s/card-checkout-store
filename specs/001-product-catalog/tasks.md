@@ -101,12 +101,12 @@ DEBEN fallar (red) antes de la implementación (green).
 
 ### Tests primero
 
-- [ ] T025 [P] [US3] Test de `seedProducts` (≥ 3 productos con stock > 0; dos ejecuciones generan los mismos `PutItem` con los mismos ids; propaga error) en `backend/src/seed.spec.ts`
-- [ ] T026 [P] [US3] Test e2e: `POST /products` → 404 en `backend/test/products.e2e.spec.ts`
+- [X] T025 [P] [US3] Test de `seedProducts` (≥ 3 productos con stock > 0; dos ejecuciones generan los mismos `PutItem` con los mismos ids; propaga error) en `backend/src/seed.spec.ts`
+- [X] T026 [P] [US3] Test e2e: `POST /products` → 404 en `backend/test/products.e2e.spec.ts`
 
 ### Implementación
 
-- [ ] T027 [US3] Implementar `backend/src/seed.ts` (`SEED_PRODUCTS`, `seedProducts`, main protegido por `require.main === module`) y el script `npm run seed`
+- [X] T027 [US3] Implementar `backend/src/seed.ts` (`SEED_PRODUCTS`, `seedProducts`, main protegido por `require.main === module`) y el script `npm run seed`
 
 ---
 
