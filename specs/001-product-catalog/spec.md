@@ -8,6 +8,13 @@
 
 **Input**: User description: "API de catálogo: listar los productos de la tienda con descripción, precio y unidades disponibles en stock, y consultar un producto por id. La base de datos se siembra con productos dummy; no existe endpoint para crear productos. La respuesta incluye los cargos fijos de compra (tarifa base y tarifa de envío) para que el cliente pueda armar el resumen de pago."
 
+## Clarifications
+
+### Session 2026-09-23
+
+- Q: ¿Cómo se cobran la tarifa base y la tarifa de envío? → A: Fijos por compra (base COP 3.000 +
+  envío COP 10.000), una sola vez sin importar la cantidad de unidades.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Ver el catálogo con stock disponible (Priority: P1)
@@ -97,8 +104,9 @@ operación pública de creación.
 - **FR-004**: El sistema MUST rechazar como "solicitud inválida" un id con formato inválido.
 - **FR-005**: El sistema MUST incluir en el catálogo los productos agotados, con 0 unidades.
 - **FR-006**: El sistema MUST exponer los cargos de compra junto al producto: tarifa base
-  (siempre se cobra) y tarifa de envío, ambas en centavos de COP. Sus valores son configurables
-  sin cambiar código.
+  (siempre se cobra) y tarifa de envío, ambas en centavos de COP y fijas por compra (no se
+  multiplican por la cantidad). Valores por defecto: base COP 3.000 y envío COP 10.000,
+  configurables sin cambiar código.
 - **FR-007**: El sistema MUST proveer un sembrado idempotente con al menos 3 productos dummy.
 - **FR-008**: El sistema MUST NOT exponer ninguna operación pública para crear, editar o borrar
   productos.
@@ -132,8 +140,6 @@ operación pública de creación.
 - Moneda única: pesos colombianos (COP). Los montos se manejan en centavos enteros.
 - El catálogo es público: consultarlo no requiere autenticación.
 - El catálogo es pequeño (menos de 50 productos), así que no se pagina.
-- Valores iniciales de los cargos: tarifa base de COP 3.000 y tarifa de envío de COP 10.000, por
-  compra (no por unidad). Son configurables.
 - Las imágenes de producto se sirven como archivos estáticos optimizados para web desde el mismo
   CDN del frontend.
 - Descontar y reservar stock es responsabilidad de la feature de checkout (002). Esta feature
