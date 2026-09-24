@@ -22,9 +22,9 @@ DEBEN fallar (red) antes de la implementación (green).
 
 ## Phase 1: Setup
 
-- [ ] T001 Crear `backend/` con package.json (NestJS 11, TS ~5.9, Jest 30, ts-jest, supertest, aws-sdk-client-mock, neverthrow, helmet, class-validator, class-transformer, @aws-sdk/lib-dynamodb, @codegenie/serverless-express 4.17), `tsconfig.json`, `tsconfig.build.json` y `nest-cli.json`
-- [ ] T002 Configurar Jest en `backend/package.json` (ts-jest, `rootDir` ., roots `src` + `test`, `collectCoverageFrom` `src/**/*.ts` excluyendo `main.ts`, `coverageThreshold` global 80) y verificar que `npm test` corre en verde con 0 tests
-- [ ] T003 [P] Crear `backend/.env.example` (AWS_REGION, PRODUCTS_TABLE, CORS_ORIGIN, BASE_FEE_IN_CENTS, DELIVERY_FEE_IN_CENTS, PORT)
+- [X] T001 Crear `backend/` con package.json (NestJS 11, TS ~5.9, Jest 30, ts-jest, supertest, aws-sdk-client-mock, neverthrow, helmet, class-validator, class-transformer, @aws-sdk/lib-dynamodb, @codegenie/serverless-express 4.17), `tsconfig.json`, `tsconfig.build.json` y `nest-cli.json`
+- [X] T002 Configurar Jest en `backend/package.json` (ts-jest, `rootDir` ., roots `src` + `test`, `collectCoverageFrom` `src/**/*.ts` excluyendo `main.ts`, `coverageThreshold` global 80) y verificar que `npm test` corre en verde con 0 tests
+- [X] T003 [P] Crear `backend/.env.example` (AWS_REGION, PRODUCTS_TABLE, CORS_ORIGIN, BASE_FEE_IN_CENTS, DELIVERY_FEE_IN_CENTS, PORT)
 
 ---
 
@@ -32,18 +32,18 @@ DEBEN fallar (red) antes de la implementación (green).
 
 ### Tests primero
 
-- [ ] T004 [P] Test de `AppError` y sus constructores en `backend/src/domain/errors.spec.ts`
-- [ ] T005 [P] Test de `toHttp` (Ok → valor; NOT_FOUND → 404; VALIDATION → 400; UNEXPECTED → 500 con mensaje genérico, sin filtrar la causa) en `backend/src/infrastructure/http/to-http.spec.ts`
-- [ ] T006 [P] Test de `loadConfig` (defaults 300000/1000000, parseo de CORS_ORIGIN en lista, error si un fee no es entero ≥ 0) en `backend/src/infrastructure/config.spec.ts`
-- [ ] T007 [P] Test de dominio `availableUnits` (stock positivo, 0, negativo → 0) en `backend/src/domain/product.spec.ts`
+- [X] T004 [P] Test de `AppError` y sus constructores en `backend/src/domain/errors.spec.ts`
+- [X] T005 [P] Test de `toHttp` (Ok → valor; NOT_FOUND → 404; VALIDATION → 400; UNEXPECTED → 500 con mensaje genérico, sin filtrar la causa) en `backend/src/infrastructure/http/to-http.spec.ts`
+- [X] T006 [P] Test de `loadConfig` (defaults 300000/1000000, parseo de CORS_ORIGIN en lista, error si un fee no es entero ≥ 0) en `backend/src/infrastructure/config.spec.ts`
+- [X] T007 [P] Test de dominio `availableUnits` (stock positivo, 0, negativo → 0) en `backend/src/domain/product.spec.ts`
 
 ### Implementación
 
-- [ ] T008 [P] Implementar `backend/src/domain/errors.ts`
-- [ ] T009 [P] Implementar `backend/src/infrastructure/http/to-http.ts`
-- [ ] T010 [P] Implementar `backend/src/infrastructure/config.ts`
-- [ ] T011 [P] Implementar `backend/src/domain/product.ts` y `backend/src/domain/fees.ts`
-- [ ] T012 Definir el puerto `ProductRepository` en `backend/src/application/ports/product.repository.ts` y el fake en `backend/test/fakes/in-memory-product.repository.ts`
+- [X] T008 [P] Implementar `backend/src/domain/errors.ts`
+- [X] T009 [P] Implementar `backend/src/infrastructure/http/to-http.ts`
+- [X] T010 [P] Implementar `backend/src/infrastructure/config.ts`
+- [X] T011 [P] Implementar `backend/src/domain/product.ts` y `backend/src/domain/fees.ts`
+- [X] T012 Definir el puerto `ProductRepository` en `backend/src/application/ports/product.repository.ts` y el fake en `backend/test/fakes/in-memory-product.repository.ts`
 
 **Checkpoint**: la base está lista y las historias pueden empezar.
 
