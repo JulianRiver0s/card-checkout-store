@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Checkout Store - NestJS API on Lambda + HTTP API + DynamoDB
+
+Parameters:
+  CorsOrigin:
+    Type: String
+    Default: ''
+    Description: Comma-separated browser origins allowed to call the API (the SPA CloudFront URL).
+
+Resources:
+  ProductsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+
+  # Explicit group so logs expire; Lambda's implicit group keeps them forever.
+  ApiLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 14
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: NestJS API (products, customers, transactions, deliveries)
+      CodeUri: backend/
+      Handler: dist/lambda.handler
+      Runtime: nodejs24.x
+      Architectures: [arm64]
+      MemorySize: 1024
+      Timeout: 29
+      LoggingConfig:
+        LogGroup: !Ref ApiLogGroup
+      Environment:
+        Variables:
+          PRODUCTS_TABLE: !Ref ProductsTable
+          CORS_ORIGIN: !Ref CorsOrigin
+          NODE_OPTIONS: --enable-source-maps
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref ProductsTable
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref HttpApi
+
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 40
+        ThrottlingRateLimit: 20
+
+Outputs:
+  ApiUrl:
+    Description: Public HTTPS base URL of the API
+    Value: !Sub https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com
+  ProductsTableName:
+    Description: DynamoDB table to seed
+    Value: !Ref ProductsTable
