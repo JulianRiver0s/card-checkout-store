@@ -1,0 +1,75 @@
+{
+  "name": "checkout-store-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hexagonal NestJS API for the checkout store",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "nest build",
+    "start": "node dist/main.js",
+    "start:dev": "nest start --watch",
+    "seed": "node dist/seed.js",
+    "test": "jest",
+    "test:cov": "jest --coverage"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src",
+      "<rootDir>/test"
+    ],
+    "testMatch": [
+      "**/*.spec.ts"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/main.ts"
+    ],
+    "coverageReporters": [
+      "text",
+      "text-summary",
+      "lcov"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 80,
+        "branches": 80,
+        "functions": 80,
+        "lines": 80
+      }
+    }
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "3.1139.0",
+    "@aws-sdk/lib-dynamodb": "3.1139.0",
+    "@codegenie/serverless-express": "4.17.1",
+    "@nestjs/common": "11.2.6",
+    "@nestjs/core": "11.2.6",
+    "@nestjs/platform-express": "11.2.6",
+    "@nestjs/swagger": "11.4.7",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.15.1",
+    "helmet": "8.3.0",
+    "neverthrow": "8.2.0",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "11.0.24",
+    "@nestjs/schematics": "11.1.0",
+    "@nestjs/testing": "11.2.6",
+    "@types/aws-lambda": "8.10.163",
+    "@types/jest": "30.0.0",
+    "@types/node": "24.13.6",
+    "@types/supertest": "7.2.1",
+    "aws-sdk-client-mock": "4.1.0",
+    "jest": "30.5.2",
+    "supertest": "7.3.0",
+    "ts-jest": "29.4.13",
+    "typescript": "5.9.3"
+  }
+}
