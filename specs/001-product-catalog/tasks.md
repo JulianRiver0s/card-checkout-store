@@ -57,15 +57,15 @@ DEBEN fallar (red) antes de la implementación (green).
 
 ### Tests primero
 
-- [ ] T013 [P] [US1] Test del caso de uso `ListProducts` (lista mapeada, vacía, error del repo → UNEXPECTED) en `backend/src/application/use-cases/list-products.spec.ts`
-- [ ] T014 [P] [US1] Test del adaptador `DynamoProductRepository.findAll` con `aws-sdk-client-mock` (Scan → productos; fallo del SDK → Err) en `backend/src/infrastructure/persistence/dynamo-product.repository.spec.ts`
-- [ ] T015 [P] [US1] Test e2e `GET /products` (200 con campos del contrato, agotado con 0, vacío `[]`, 500 genérico si el repo falla, headers de helmet, CORS solo para el origen configurado, `GET /docs` → 200 por FR-010) en `backend/test/products.e2e.spec.ts`
+- [X] T013 [P] [US1] Test del caso de uso `ListProducts` (lista mapeada, vacía, error del repo → UNEXPECTED) en `backend/src/application/use-cases/list-products.spec.ts`
+- [X] T014 [P] [US1] Test del adaptador `DynamoProductRepository.findAll` con `aws-sdk-client-mock` (Scan → productos; fallo del SDK → Err) en `backend/src/infrastructure/persistence/dynamo-product.repository.spec.ts`
+- [X] T015 [P] [US1] Test e2e `GET /products` (200 con campos del contrato, agotado con 0, vacío `[]`, 500 genérico si el repo falla, headers de helmet, CORS solo para el origen configurado, `GET /docs` → 200 por FR-010) en `backend/test/products.e2e.spec.ts`
 
 ### Implementación
 
-- [ ] T016 [US1] Implementar `ListProducts` en `backend/src/application/use-cases/list-products.ts`
-- [ ] T017 [US1] Implementar `findAll` en `backend/src/infrastructure/persistence/dynamo-product.repository.ts`
-- [ ] T018 [US1] Implementar `ProductsController.list` + DTO en `backend/src/infrastructure/http/`, wiring en `backend/src/app.module.ts` y `createApp()` (helmet, CORS, ValidationPipe, Swagger `/docs`) en `backend/src/app.factory.ts`
+- [X] T016 [US1] Implementar `ListProducts` en `backend/src/application/use-cases/list-products.ts`
+- [X] T017 [US1] Implementar `findAll` en `backend/src/infrastructure/persistence/dynamo-product.repository.ts`
+- [X] T018 [US1] Implementar `ProductsController.list` + DTO en `backend/src/infrastructure/http/`, wiring en `backend/src/app.module.ts` y `createApp()` (helmet, CORS, ValidationPipe, Swagger `/docs`) en `backend/src/app.factory.ts`
 
 **Checkpoint**: US1 funciona por sí sola.
 

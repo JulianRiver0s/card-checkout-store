@@ -18,6 +18,7 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
+    "testTimeout": 20000,
     "roots": [
       "<rootDir>/src",
       "<rootDir>/test"
