@@ -32,9 +32,9 @@ description: "Task list for 002-aws-deploy"
 
 ## Phase 3: User Story 2 - Infraestructura reproducible (P1)
 
-- [ ] T008 [US2] Job `infra` en `.github/workflows/ci.yml` que corre `sam validate --lint`
-- [ ] T009 [US2] Redesplegar sin cambios y verificar "No changes to deploy"
-- [ ] T010 [P] [US2] Sección "Deploy" en `README.md` con los comandos del quickstart y la URL pública
+- [X] T008 [US2] Job `infra` en `.github/workflows/ci.yml` que corre `sam validate --lint`
+- [X] T009 [US2] Redesplegar sin cambios y verificar "No changes to deploy"
+- [X] T010 [P] [US2] Sección "Deploy" en `README.md` con los comandos del quickstart y la URL pública
 
 ## Dependencies & Execution Order
 
