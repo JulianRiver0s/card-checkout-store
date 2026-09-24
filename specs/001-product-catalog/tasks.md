@@ -79,15 +79,15 @@ DEBEN fallar (red) antes de la implementación (green).
 
 ### Tests primero
 
-- [ ] T019 [P] [US2] Test del caso de uso `GetProduct` (encontrado + fees, no encontrado → NOT_FOUND, error del repo → UNEXPECTED) en `backend/src/application/use-cases/get-product.spec.ts`
-- [ ] T020 [P] [US2] Test de `DynamoProductRepository.findById` (GetItem con Item, sin Item → null, fallo → Err) en `backend/src/infrastructure/persistence/dynamo-product.repository.spec.ts`
-- [ ] T021 [P] [US2] Tests e2e `GET /products/:id` (200 con fees, 404, 400 con `abc`, 400 con UUID no v4) en `backend/test/products.e2e.spec.ts`
+- [X] T019 [P] [US2] Test del caso de uso `GetProduct` (encontrado + fees, no encontrado → NOT_FOUND, error del repo → UNEXPECTED) en `backend/src/application/use-cases/get-product.spec.ts`
+- [X] T020 [P] [US2] Test de `DynamoProductRepository.findById` (GetItem con Item, sin Item → null, fallo → Err) en `backend/src/infrastructure/persistence/dynamo-product.repository.spec.ts`
+- [X] T021 [P] [US2] Tests e2e `GET /products/:id` (200 con fees, 404, 400 con `abc`, 400 con UUID no v4) en `backend/test/products.e2e.spec.ts`
 
 ### Implementación
 
-- [ ] T022 [US2] Implementar `GetProduct` en `backend/src/application/use-cases/get-product.ts`
-- [ ] T023 [US2] Implementar `findById` en `backend/src/infrastructure/persistence/dynamo-product.repository.ts`
-- [ ] T024 [US2] Implementar `ProductsController.getById` con `ParseUUIDPipe({ version: '4' })` y el DTO de detalle
+- [X] T022 [US2] Implementar `GetProduct` en `backend/src/application/use-cases/get-product.ts`
+- [X] T023 [US2] Implementar `findById` en `backend/src/infrastructure/persistence/dynamo-product.repository.ts`
+- [X] T024 [US2] Implementar `ProductsController.getById` con `ParseUUIDPipe({ version: '4' })` y el DTO de detalle
 
 **Checkpoint**: US1 y US2 funcionan.
 

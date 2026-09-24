@@ -1,5 +1,5 @@
-import { DynamoDBDocumentClient, ScanCommand } from '@aws-sdk/lib-dynamodb';
-import { errAsync, ResultAsync } from 'neverthrow';
+import { DynamoDBDocumentClient, GetCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
+import { ResultAsync } from 'neverthrow';
 import { ProductRepository } from '../../application/ports/product.repository';
 import { AppError, unexpected } from '../../domain/errors';
 import { Product } from '../../domain/product';
@@ -18,7 +18,10 @@ export class DynamoProductRepository implements ProductRepository {
     ).map((output) => (output.Items ?? []) as Product[]);
   }
 
-  findById(_id: string): ResultAsync<Product | null, AppError> {
-    return errAsync(unexpected(new Error('Not implemented')));
+  findById(id: string): ResultAsync<Product | null, AppError> {
+    return ResultAsync.fromPromise(
+      this.db.send(new GetCommand({ TableName: this.table, Key: { id } })),
+      unexpected,
+    ).map((output) => (output.Item as Product | undefined) ?? null);
   }
 }

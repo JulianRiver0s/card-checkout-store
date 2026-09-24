@@ -14,3 +14,14 @@ export class ProductDto implements CatalogItem {
   /** Units left in stock; 0 means sold out. @example 12 */
   availableUnits!: number;
 }
+
+export class PurchaseFeesDto {
+  /** Charged once per purchase, in COP cents. @example 300000 */
+  baseFeeInCents!: number;
+  /** Charged once per purchase, in COP cents. @example 1000000 */
+  deliveryFeeInCents!: number;
+}
+
+export class ProductDetailDto extends ProductDto {
+  fees!: PurchaseFeesDto;
+}
